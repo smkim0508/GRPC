@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+// object classification service model
+service AI_ModelService {
+    // class name
+    rpc process(InferenceRequest) returns (InferenceReply) {}
+}
+
+// request: clint -> server
+message InferenceRequest {
+    bytes img_bytes = 1;
+    int32 width = 2;
+    int32 height = 3;
+    int32 channel = 4;
+    // 1,2,3,4 order
+}
+
+// reply: server -> client
+message InferenceReply {
+    int32 class_index = 1;
+    float prob = 2;
+}
